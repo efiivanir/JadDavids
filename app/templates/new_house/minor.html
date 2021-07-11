@@ -1,0 +1,28 @@
+<label>לקוח משני</label>
+
+    {{ form.minor_first_name.label }}<br>
+    {{ form.minor_first_name(size=32) }}<br>
+    {% for error in form.minor_first_name.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+
+
+    {{ form.minor_last_name.label }}<br>
+    {{ form.minor_last_name(size=32) }}<br>
+    {% for error in form.minor_last_name.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+
+
+    {{ form.minor_id.label }}<br>
+    {{ form.minor_id(size=32) }}<br>
+    {% for error in form.minor_id.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+
+
+    {{ form.minor_phone.label }}<br>
+    {{ form.minor_phone(size=32) }}<br>
+    {% for error in form.minor_phone.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}

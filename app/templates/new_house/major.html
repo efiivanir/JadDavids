@@ -1,0 +1,36 @@
+<label>לקוח ראשי</label>
+
+    {{ form.major_first_name.label }}<br>
+    {{ form.major_first_name(size=32) }}<br>
+    {% for error in form.major_first_name.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+
+
+    {{ form.major_last_name.label }}<br>
+    {{ form.major_last_name(size=32) }}<br>
+    {% for error in form.major_last_name.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+
+
+    {{ form.major_id.label }}<br>
+    {{ form.major_id(size=32) }}<br>
+    {% for error in form.major_id.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+
+
+    {{ form.major_phone.label }}<br>
+    {{ form.major_phone(size=32) }}<br>
+    {% for error in form.major_phone.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+
+
+    {{ form.major_birth_year.label }}<br>
+    {{ form.major_birth_year(size=32) }}<br>
+    {% for error in form.major_birth_year.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+

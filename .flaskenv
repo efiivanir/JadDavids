@@ -1,0 +1,2 @@
+FLASK_APP=JadeDavids.py
+FLASK_DEBUG=1

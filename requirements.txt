@@ -1,0 +1,12 @@
+setuptools
+wheel
+Flask
+ipython
+python-dotenv
+flask-wtf
+flask-sqlalchemy
+flask-bootstrap
+flask-migrate
+flask-shell-ipython
+faker
+flask-bootstrap
