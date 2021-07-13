@@ -9,29 +9,32 @@
 
         <form action="" method="post">
             {{ form.hidden_tag() }}
-            <div class="row-fluid">
 
-                <div class="form-group">
-
-                    {% include "new_house/major.html" %}
-
+            <div class="row">
+                <div class="col-lg-4">
+                    <h4>לקוח ראשי</h4>
+                    {% block leftbody %}
+                        {% include "new_house/major.html" %}
+                    {% endblock %}
                 </div>
-
-                <div class="form-group">
-
-                    {% include "new_house/minor.html" %}
-
+                <div class="col-lg-4 rounded">
+                    <h4>לקוח שני</h4>
+                    {% block centerbody %}
+                        {% include "new_house/minor.html" %}
+                    {% endblock %}
                 </div>
-
-                <div class="form-group">
-
-                    {% include "new_house/address.html" %}
-
+                <div class="col-lg-4 rounded">
+                    <h4>כתובת</h4>
+                    {% block rightbody %}
+                        {% include "new_house/address.html" %}
+                    {% endblock %}
                 </div>
             </div>
+            <div class="text-center">
+                {% include "new_house/short_txt.html" %}
+            </div>
 
-            {% include "new_house/short_txt.html" %}
-
+            <hr>
             <p>{{ form.submit() }}</p>
         </form>
     </div>

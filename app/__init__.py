@@ -11,6 +11,7 @@ migrate = Migrate(app, db)
 bootstrap = Bootstrap(app)
 
 intervention_types = {
+
     'monthly_support': 'תמיכה חודשית',
     'one_time_grant': 'מענק חד פעמי',
     'holiday_grant': 'מענק לחג',
@@ -18,6 +19,7 @@ intervention_types = {
 }
 
 intervention_status = {
+
     'request': 'הוגשה בקשה',
     'request_confirm': 'בקשה אושרה',
     'pay_completed': 'תשלום הועבר',

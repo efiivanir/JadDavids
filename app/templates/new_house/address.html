@@ -1,21 +1,27 @@
-<label>כתובת</label>
-
-    {{ form.address_city.label }}<br>
-    {{ form.address_city(size=32) }}<br>
-    {% for error in form.address_city.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-    {% endfor %}
 
 
-    {{ form.address_street.label }}<br>
-    {{ form.address_street(size=32) }}<br>
-    {% for error in form.address_street.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-    {% endfor %}
+{{ form.address_city.label }}<br>
+{{ form.address_city(size=32) }}<br>
+{% for error in form.address_city.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+{% endfor %}
 
 
-    {{ form.address_house_num.label }}<br>
-    {{ form.address_house_num(size=32) }}<br>
-    {% for error in form.address_house_num.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-    {% endfor %}
+{{ form.address_street.label }}<br>
+{{ form.address_street(size=32) }}<br>
+{% for error in form.address_street.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+{% endfor %}
+
+
+{{ form.address_house_num.label }}<br>
+{{ form.address_house_num(size=32) }}<br>
+{% for error in form.address_house_num.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+{% endfor %}
+
+{{ form.current_therapist.label }}<br>
+{{ form.current_therapist() }}<br>
+{% for error in form.current_therapist.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+{% endfor %}

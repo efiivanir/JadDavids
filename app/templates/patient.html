@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="card  text-center">
+        <div class="card-header">
+            <h2>
+                {{ user.major_last_name }} {{ user.major_first_name }}
+            </h2>
+        </div>
+
+        <div class="card-body">
+            <h3 class="card-title">
+                {{ user.address_city }},{{ user.address_street }} {{ user.address_house_num }}
+            </h3>
+            <h3 class="card-title">
+                שנת לידה:{{ user.major_birth_year }}
+            </h3>
+            <h3 class="card-title">
+                ת.ז:{{ user.major_id }}
+            </h3>
+            <h3 class="card-title">
+                טלפון:{{ user.major_phone }}
+            </h3>
+            <h3 class="card-title">
+                בן|בת זוג:{{ user.minor_last_name }} {{ user.minor_first_name }}
+            </h3>
+            <a href="#" class="btn btn-primary">הוסף התערבות</a>
+
+
+        </div>
+
+        <h2 class="text-center">
+        התערבויות
+        </h2>
+        {%- for inter in interventions %}
+            <div class="card border-success text-center" style="border-width: 1px;border-style: solid;">
+                <div class="card-header bg-behance border-success">{{ inter.date.strftime('%d-%m-%Y') }}</div>
+                <div class="card-body text-success">
+                    <h5 class="card-title">{{ inter.in_type }}</h5>
+                    <h5 class="card-title">{{ inter.status }}</h5>
+                    <p class="card-text">{{ inter.txt }}</p>
+                </div>
+                <div class="card-footer bg-transparent border-success">{{ inter.therapist }}</div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+{% endblock %}

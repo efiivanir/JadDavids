@@ -1,24 +1,32 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired, Length
-
+from wtforms import StringField, SubmitField, SelectField, TextAreaField
+from wtforms.validators import DataRequired, Length, NumberRange
+from app import therapists
 
 class HouseHoldForm(FlaskForm):
-    major_first_name = StringField('ראשי: שם משפחה', validators=[DataRequired()])
-    major_last_name = StringField('ראשי: שם פרטי', validators=[DataRequired()])
-    major_id = StringField('ראשי: תעודת זהות', validators=[DataRequired()])
-    major_phone = StringField('ראשי: טלפון', validators=[DataRequired()])
-    major_birth_year = StringField('ראשי: שנת לידה', validators=[DataRequired()])
+    major_first_name = StringField('שם משפחה', validators=[DataRequired()])
+    major_last_name = StringField('שם פרטי', validators=[DataRequired()])
+    major_id = StringField('תעודת זהות')
+    major_phone = StringField('טלפון')
+    major_birth_year = StringField('שנת לידה', validators=[DataRequired()])
     
-    minor_first_name = StringField('משני: שם משפחה', validators=[DataRequired()])
-    minor_last_name = StringField('משני: שם פרטי', validators=[DataRequired()])
-    minor_id = StringField('משני: תעודת זהות', validators=[DataRequired()])
-    minor_phone = StringField('משני: טלפון', validators=[DataRequired()])
+    minor_first_name = StringField('שם משפחה')
+    minor_last_name = StringField('שם פרטי')
+    minor_id = StringField('תעודת זהות')
+    minor_phone = StringField('טלפון')
 
-    address_city = StringField('כתובת: עיר', validators=[DataRequired()])
-    address_street = StringField('כתובת: רחוב', validators=[DataRequired()])
-    address_house_num = StringField('כתובת: מספר בית', validators=[DataRequired()])
+    address_city = StringField('עיר', validators=[DataRequired()])
+    address_street = StringField('רחוב', validators=[DataRequired()])
+    address_house_num = StringField('מספר בית', validators=[DataRequired()])
 
-    short_description = StringField('תאור קצר', validators=[Length(min=0, max=140)])
+    short_description = TextAreaField('תאור קצר',
+                                       render_kw={"rows": 5, "cols": 60},
+                                       validators=[Length(min=0, max=140)]
+                                    )
+
+    current_therapist = SelectField('מטפל נוכחי', choices=therapists)
+
+
+
 
     submit = SubmitField('שלח')
