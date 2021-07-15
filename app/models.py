@@ -6,26 +6,27 @@ class HouseHold(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     major_first_name = db.Column(db.String(32))
     major_last_name = db.Column(db.String(32))
-    major_id = db.Column(db.String(9), default='None')
-    major_phone = db.Column(db.String(12),default='None')
+    major_id = db.Column(db.String(9))
+    major_phone = db.Column(db.String(12))
     major_birth_year = db.Column(db.String(4))
 
-    minor_first_name = db.Column(db.String(32),default='None')
-    minor_last_name = db.Column(db.String(32),default='None')
-    minor_id = db.Column(db.String(9), default='None')
-    minor_phone = db.Column(db.String(12), default='None')
+    minor_first_name = db.Column(db.String(32))
+    minor_last_name = db.Column(db.String(32))
+    minor_id = db.Column(db.String(9))
+    minor_phone = db.Column(db.String(12))
 
     address_city = db.Column(db.String(32))
     address_street = db.Column(db.String(32))
     address_house_num = db.Column(db.String(4))
 
-    short_description = db.Column(db.String(150), default='None')
+    short_description = db.Column(db.String(150))
     current_therapist = db.Column(db.String(20))
-    current_status = db.Column(db.String(20),default='לקוח חדש')
-    current_type = db.Column(db.String(20),default='לקוח חדש')
-    last_update = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
-    interventions = db.relationship('Intervention', backref='m_id', lazy='dynamic')
+    inter_monthly_support = db.relationship('MonthlySupport', backref='m_id', lazy='dynamic')
+    inter_one_time_grant = db.relationship('OneTimeGrant', backref='m_id', lazy='dynamic')
+    inter_holiday_grant = db.relationship('HolidayGrant', backref='m_id', lazy='dynamic')
+    inter_heat_grant = db.relationship('HeatGrant', backref='m_id', lazy='dynamic')
+
 
     def __repr__(self):
         return '<major_id {}>'.format(self.major_id)
@@ -44,14 +45,63 @@ class HouseHold(db.Model):
         }
 
 
-class Intervention(db.Model):
+
+class MonthlySupport(db.Model):
+    status_types = ['הוגשה בקשה', 'אושרה בקשה', 'נדחתה בקשה']
+
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.String, db.ForeignKey('house_hold.id'))
-    in_type = db.Column(db.String(20))
     status = db.Column(db.String(20))
+    date_start = db.Column(db.DateTime, index=True)
+    date_end = db.Column(db.DateTime, index=True)
+    date_update = db.Column(db.DateTime, index=True)
+    date_decision = db.Column(db.DateTime, index=True)
     therapist = db.Column(db.String(20))
-    date = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     txt = db.Column(db.String(150))
 
     def __repr__(self):
-        return '<Intervension {}>'.format(self.txt)
+        return '<MonthlySupport {} {} {}>'.format(self.user_id, self.status, self.date_decision)
+
+class OneTimeGrant(db.Model):
+    status_types = ['הוגשה בקשה', 'אושרה בקשה', 'נדחתה בקשה']
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.String, db.ForeignKey('house_hold.id'))
+    status = db.Column(db.String(20))
+    date_update = db.Column(db.DateTime, index=True)
+    date_decision = db.Column(db.DateTime, index=True)
+    therapist = db.Column(db.String(20))
+    txt = db.Column(db.String(150))
+
+    def __repr__(self):
+        return '<OneTimeGrant {} {} {}>'.format(self.user_id, self.status, self.date_decision)
+
+
+class HolidayGrant(db.Model):
+    status_types = ['הוגשה בקשה', 'אושרה בקשה', 'נדחתה בקשה']
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.String, db.ForeignKey('house_hold.id'))
+    status = db.Column(db.String(20))
+    date_update = db.Column(db.DateTime, index=True)
+    date_decision = db.Column(db.DateTime, index=True)
+    therapist = db.Column(db.String(20))
+    txt = db.Column(db.String(150))
+
+
+    def __repr__(self):
+        return '<HolydayGrant {} {} {}>'.format(self.user_id, self.status, self.date_decision)
+
+
+class HeatGrant(db.Model):
+    status_types = ['הוגשה בקשה', 'אושרה בקשה', 'נדחתה בקשה']
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.String, db.ForeignKey('house_hold.id'))
+    status = db.Column(db.String(20))
+    date_update = db.Column(db.DateTime, index=True)
+    date_decision = db.Column(db.DateTime, index=True)
+    therapist = db.Column(db.String(20))
+    txt = db.Column(db.String(150))
+    
+    def __repr__(self):
+        return '<HeatGrant {} {} {}>'.format(self.user_id, self.status, self.date_decision)

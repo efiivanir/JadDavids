@@ -1,7 +1,7 @@
 from flask import render_template, request, flash
 from app import app, db,therapists
 from app.forms import HouseHoldForm
-from app.models import HouseHold, Intervention
+from app.models import HouseHold, OneTimeGrant,MonthlySupport,HolidayGrant,HeatGrant
 
 @app.route('/')
 @app.route('/index')
@@ -85,9 +85,9 @@ def data():
         'draw': request.args.get('draw', type=int),
         }
 
-@app.route('/patient/<user_id>')
-def view_patient(user_id):
-    user = HouseHold.query.get(user_id)
-    interventions = Intervention.query.filter_by(user_id=user_id).order_by(Intervention.date.desc())
-    return render_template('patient.html', user=user,interventions=interventions)
+# @app.route('/patient/<user_id>')
+# def view_patient(user_id):
+#     user = HouseHold.query.get(user_id)
+#     interventions = Intervention.query.filter_by(user_id=user_id).order_by(Intervention.date.desc())
+#     return render_template('patient.html', user=user,interventions=interventions)
 
