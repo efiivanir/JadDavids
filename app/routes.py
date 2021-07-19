@@ -47,9 +47,7 @@ def data():
         query = query.filter(db.or_(
             HouseHold.major_last_name.like(f'%{search}%'),
             HouseHold.major_first_name.like(f'%{search}%'),
-            HouseHold.current_therapist.like(f'%{search}%'),
-            HouseHold.current_status.like(f'%{search}%'),
-            HouseHold.current_type.like(f'%{search}%'),
+            HouseHold.therapist.like(f'%{search}%'),
 
         ))
     total_filtered = query.count()
@@ -62,7 +60,7 @@ def data():
         if col_index is None:
             break
         col_name = request.args.get(f'columns[{col_index}][data]')
-        if col_name not in ['major_first_name', 'major_last_name', 'current_therapist']:
+        if col_name not in ['major_first_name', 'major_last_name', 'therapist']:
             col_name = 'major_first_name'
         descending = request.args.get(f'order[{i}][dir]') == 'desc'
         col = getattr(HouseHold, col_name)
@@ -78,12 +76,30 @@ def data():
     length = request.args.get('length', type=int)
     query = query.offset(start).limit(length)
     # response
+    details = [house.to_dict() for house in query]
     return {
-        'data': [house.to_dict() for house in query],
+        'data': details,
         'recordsFiltered': total_filtered,
         'recordsTotal': HouseHold.query.count(),
         'draw': request.args.get('draw', type=int),
         }
+
+@app.route('/reports/report_monthly_grant')
+def aa():
+    return render_template('reports/monthly_support.html', title='רשימת לקוחות')
+
+@app.route('/reports/report_one_grant')
+def report_one_grant():
+    return render_template('reports/one_time_grant.html', title='רשימת לקוחות')
+
+@app.route('/reports/report_heat_grant')
+def report_heat_grant():
+    return render_template('reports/heat_grant.html', title='רשימת לקוחות')
+
+@app.route('/reports/report_holiday_grant')
+def report_monthly_grant():
+    return render_template('reports/holiday_grant.html', title='רשימת לקוחות')
+
 
 # @app.route('/patient/<user_id>')
 # def view_patient(user_id):

@@ -14,10 +14,9 @@
         <th>תעודת זהות</th>
         <th>שנת לידה</th>
         <th>טלפון</th>
-        <th>מטפל נוכחי</th>
-        <th>סוג התערבות נוכחי</th>
-        <th>סטטוס התערבות נוכחי</th>
-        <th>תאריך סטטוס נוכחי</th>
+        <th>מטפל</th>
+        <th>תאריך פתיחה</th>
+
       </tr>
     </thead>
     <tbody>
@@ -29,9 +28,10 @@
 {% endblock %}
 
 {% block scripts %}
-    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>
+{#    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>#}
+{#    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>#}
+{#    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>#}
+
   <script>
     $(document).ready(function () {
       $('#data').DataTable({
@@ -43,10 +43,9 @@
           {data: 'major_id', orderable: false},
           {data: 'major_birth_year', orderable: false},
           {data: 'major_phone',orderable: false},
-          {data: 'current_therapist'},
-          {data: 'current_status'},
-          {data: 'current_type'},
-          {data: 'last_update',orderable: false}
+          {data: 'therapist'},
+          {data: 'create_date'}
+
         ],
       });
     });

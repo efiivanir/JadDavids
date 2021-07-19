@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% import 'bootstrap/wtf.html' as wtf %}
 {% block content %}
 
     <div class="container">
@@ -15,12 +14,14 @@
                     <h4>לקוח ראשי</h4>
                     {% block leftbody %}
                         {% include "new_house/major.html" %}
+
                     {% endblock %}
                 </div>
                 <div class="col-lg-4 rounded">
                     <h4>לקוח שני</h4>
                     {% block centerbody %}
-                        {% include "new_house/minor.html" %}
+{#                        {% include "new_house/minor.html" %}#}
+                        {% include "new_house/major.html" %}
                     {% endblock %}
                 </div>
                 <div class="col-lg-4 rounded">

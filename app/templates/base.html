@@ -1,55 +1,105 @@
+<!doctype html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    {#    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"#}
+    {#          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">#}
 
-{% extends 'bootstrap/base.html' %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="shortcut icon"
+          href="https://static.wixstatic.com/media/00889e_17a353bdb89e4641a439505dae697b7b~mv2.jpg/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/00889e_17a353bdb89e4641a439505dae697b7b~mv2.jpg">
 
-{% block title %}
-    {% if title %}
-        {{ title }} - Jad Davids
-    {% else %}
-        {{ ('Welcome to Jad Davids requests program') }}
-    {% endif %}
-{% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-submenu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='default.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='docs.css') }}">
 
-{% block head %}
-    {{ super() }}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.css">
-{#    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">#}
-    <link rel="shortcut icon" href="https://static.wixstatic.com/media/00889e_17a353bdb89e4641a439505dae697b7b~mv2.jpg/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/00889e_17a353bdb89e4641a439505dae697b7b~mv2.jpg">
-{#    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"#}
-{#          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"#}
-{#          crossorigin="anonymous">#}
-{% endblock %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.css">
 
-{% block navbar %}
 
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{{ url_for('index') }}">יד דוידס</a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+    <script src="{{ url_for('static', filename='jquery-3.5.1.slim.js') }}" defer=""></script>
+    <script src="{{ url_for('static', filename='popper.js') }}" defer=""></script>
+    <script src="{{ url_for('static', filename='bootstrap.js') }}" defer=""></script>
+    <script src="{{ url_for('static', filename='highlight.js') }}" defer=""></script>
+    <script src="{{ url_for('static', filename='bootstrap-submenu.js') }}" defer=""></script>
+    <script src="{{ url_for('static', filename='docs.js') }}" defer=""></script>
 
-                    <li><a href="{{ url_for('new_household') }}">{{ ('דוחות') }}</a></li>
-                    <li><a href="{{ url_for('new_household') }}">{{ ('לקוח חדש') }}</a></li>
-                </ul>
-            </div>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>
+
+    {#    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>#}
+    {#    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>#}
+    {#    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>#}
+
+
+</head>
+<body>
+{#-----------------------------------------------------------------------------------------------------------#}
+
+<div class="container py-3" id="container">
+
+    <nav class="navbar navbar-light bg-light navbar-expand-sm mb-3">
+        <a class="navbar-brand" href="{{ url_for('index') }}">יד דוידס</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('new_household') }}">לקוח חדש </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" tabindex="0" data-toggle="dropdown" data-submenu=""
+                       aria-expanded="false">
+                        דוחות
+                    </a>
+
+                    <div class="dropdown-menu">
+                        <div class="dropdown dropright dropdown-submenu">
+
+                            <div class="dropdown dropright dropdown-submenu">
+                                <button class="dropdown-item dropdown-toggle" type="button">סוג התערבות</button>
+
+                                <div class="dropdown-menu">
+                                    <button class="dropdown-item" type="button">תמיכה חודשית</button>
+                                    <button class="dropdown-item" type="button">תמיכה חד פעמית</button>
+                                    <button class="dropdown-item" type="button">מענק לחגים</button>
+                                    <button class="dropdown-item" type="button">מענק חורף</button>
+                                </div>
+                            </div>
+                        </div>
+                </li>
+            </ul>
         </div>
     </nav>
-{% endblock %}
 
-{% block content %}
-{#    <div class="container">#}
-{#        {% block app_content %}{% endblock %}#}
-{#    </div>#}
-{% endblock %}
+</div>
+
+<a class="js-scroll-top scroll-top btn btn-primary btn-sm hidden"
+   href="https://vsn4ik.github.io/bootstrap-submenu/#container" hidden="">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"></path>
+    </svg>
+</a>
+
+{% block content %}{% endblock %}
+</body>
+
+</div>
+{#<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>#}
 
 {% block scripts %}{% endblock %}
+</body>
+</html>
+
+
+
+
 
 

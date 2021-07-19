@@ -5,7 +5,7 @@ ipython
 python-dotenv
 flask-wtf
 flask-sqlalchemy
-flask-bootstrap
+flask-bootstrap5
 flask-migrate
 flask-shell-ipython
 faker
